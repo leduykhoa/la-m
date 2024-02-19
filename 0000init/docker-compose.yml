@@ -1,0 +1,55 @@
+# ===================================================================================================================================
+version: "3.5"
+services:
+# ===================================================================================================================================
+  la-m:
+    container_name: la-m
+    hostname: la-m
+    build:
+      context: "./apache/"
+      args:
+        PHP_VERSION: 8.2
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    networks:
+      - php_dev_network
+    volumes:
+      - ./apache/apache.conf:/etc/apache2/mods-enabled/apache.conf
+      - ./apache/ssl:/etc/letsencrypt    
+      - ./:/var/www/html
+    # ports:
+    #   - 81:81
+    #   - 5173:5173
+    # entrypoint: [ "bash", "-c", "php artisan serve --host 0.0.0.0 --port 81" ]
+    working_dir: /var/www/html
+    environment:
+      XDEBUG_CONFIG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CONFIG_CLIENT_PORT: 9001
+      # DB_HOST: la-m-db
+      DB_HOST: php-dev_mysql
+      DB_PORT: 3306
+      DB_DATABASE: la-m
+      DB_USERNAME: root
+      DB_PASSWORD: 1234567
+# # ===================================================================================================================================
+#   la-m-db:
+#     container_name: la-m-db
+#     image: mysql:8.0
+#     restart: "no"
+#     command: --lower_case_table_names=1 --sql_mode="ON" --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#     networks:
+#       - php_dev_network
+#     volumes:
+#       - ./mysql/:/var/lib/mysql/
+#     environment:
+#       MYSQL_ROOT_PASSWORD: 1234567
+#       MYSQL_DATABASE: la-m
+#       MYSQL_USER: la-m
+#       MYSQL_PASSWORD: 1234567
+#       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+#       MYSQL_HOST: 0.0.0.0
+# ===================================================================================================================================
+networks:
+  php_dev_network:
+    external:
+      name: php_dev_network

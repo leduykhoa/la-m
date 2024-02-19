@@ -1,0 +1,63 @@
+<?php
+/*
+ *  ............(¯''•.
+ *  ..............(¯'•(¯'•............_/)/)
+ *  ...............(¯'•.(¯'•.......((.....((
+ *  ................(¯''•(¯'•...((.)..(. ‘ /)
+ *  .................(¯''•.(¯'((.)....|\_/
+ *  .....,,,~”¯¯¯''¯(_¸´(_.)......|
+ *  ...(((./...........................)__
+ *  ..((((.\......),,...........(...../__'\
+ *  ..))))..\ . .//...¯¯¯¯¯¯¯' \.../... / /
+ *  .(((...../ .// .............. | ./...../
+ *  .))).....| ||.................| |...........♥♥♥
+ *  ((........) \.................) \...........\|/
+ *  .^^^^.""'"'.^^^^^^^..""".^^^^.""""
+ *  ( ͡° ͜ʖ ͡°( ಠ ͜ʖ ಠ ) ͡° ͜ʖ ͡°) ( ͡° ͜ʖ ͡°( ಠ ͜ʖ ಠ ) ͡° ͜ʖ ͡°) ( ͡° ͜ʖ ͡°( ಠ ͜ʖ ಠ ) ͡° ͜ʖ ͡°)
+ *  ≧◔◡◔≦ ≧◔◡◔≦ ≧◔◡◔≦ ≧◔◡◔≦ ≧◔◡◔≦ ≧◔◡◔≦ ≧◔◡◔≦ ≧◔◡◔≦
+ *  
+ *  Copyright © 2009-__YEAR__ Lê Duy Khoa. All rights reserved.
+ *  Mail: leduykhoa060690@gmail.com
+ *  Skype: leduykhoa060690
+ *  Website: http://web-fast.com
+ *  Mobile: +84973421508
+ *  Telegram: https://t.me/leduykhoa
+ *  GitHub: https://github.com/leduykhoa
+ *  Date: __YEAR__/__MONTH__/__DAY__
+ *  Time: __HOUR__:__MINUTE__:__SECOND__
+ */
+ 
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Builder;
+use App\Repositories\AbstractRepository;
+use App\Repositories\Contracts\DummyClassInterface;
+use App\Models\__CLASS_NAME__;
+
+class DummyClass extends AbstractRepository implements DummyClassInterface
+{
+    /**
+     * @var __CLASS_NAME__
+     */
+    protected $model;
+
+    /**
+     * DummyClass construct
+     *
+     * @param  mixed $model
+     *
+     * @return void
+     */
+    public function __construct(__CLASS_NAME__ $model)
+    {
+        parent::__construct($model);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getQueryBuilder(): Builder
+    {   
+        return __CLASS_NAME__::query();
+    }
+}
